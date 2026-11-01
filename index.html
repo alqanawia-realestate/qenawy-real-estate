@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#080808">
+<meta name="description" content="القناوية للتسويق والاستثمار العقاري — شقق تمليك وإيجار في دار السلام والبساتين وحدائق المعادي والمعادي.">
+<title>القناوية | للتسويق والاستثمار العقاري</title>
+<style>
+:root{--gold:#d8ad58;--gold2:#f2d48e;--bg:#090909;--panel:#141414;--muted:#b9b2a4;--line:#393124}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--bg);color:#f8f5ee;font-family:Tahoma,Arial,sans-serif;line-height:1.7}
+a{color:inherit;text-decoration:none}.wrap{width:min(1120px,92%);margin:auto}
+header{position:sticky;top:0;z-index:10;background:#080808ed;border-bottom:1px solid #302719;backdrop-filter:blur(12px)}
+.nav{min-height:76px;display:flex;align-items:center;justify-content:space-between;gap:20px}.brand{display:flex;align-items:center;gap:12px;font-weight:bold}.brand img{width:54px;height:54px;object-fit:cover;border-radius:50%;border:1px solid var(--gold)}
+.brand span{color:var(--gold2);font-size:17px}.links{display:flex;gap:22px;color:#e7dfd0;font-size:14px}.links a:hover{color:var(--gold2)}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:11px 19px;border-radius:8px;background:linear-gradient(135deg,#f1d18a,#b98431);color:#17110a;font-weight:bold;border:0;cursor:pointer}
+.btn.outline{background:transparent;color:var(--gold2);border:1px solid var(--gold)}
+.hero{position:relative;overflow:hidden;padding:82px 0 76px;background:radial-gradient(ellipse at 50% 0%,#60471e55,transparent 58%),linear-gradient(120deg,#080808,#17130c 55%,#080808);text-align:center}
+.hero:after{content:"";position:absolute;inset:18px;border:1px solid #c69a4b33;pointer-events:none}
+.kicker{color:var(--gold2);letter-spacing:1px;font-size:14px}.hero h1{font-size:clamp(30px,5vw,54px);line-height:1.25;margin:12px auto;max-width:850px}.hero h1 em{font-style:normal;color:var(--gold2)}.hero p{color:#d0c7b8;max-width:650px;margin:0 auto 25px}
+.hero-actions{display:flex;justify-content:center;gap:12px;flex-wrap:wrap}
+section{padding:58px 0}.section-head{text-align:center;margin-bottom:28px}.section-head h2{font-size:29px;margin:0 0 6px}.section-head p{color:var(--muted);margin:0}.gold{color:var(--gold2)}
+.areas{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}.area{padding:22px 12px;text-align:center;background:linear-gradient(145deg,#1b1812,#111);border:1px solid var(--line);border-radius:12px;transition:.2s}.area:hover{transform:translateY(-4px);border-color:var(--gold)}.area b{display:block;color:var(--gold2);font-size:18px}.area small{color:var(--muted)}
+.filters{display:grid;grid-template-columns:repeat(4,1fr) auto;gap:10px;padding:16px;background:var(--panel);border:1px solid var(--line);border-radius:12px;margin-bottom:22px}
+select,input{width:100%;background:#0b0b0b;color:#f5efe4;border:1px solid #51432c;border-radius:8px;padding:12px;font:inherit}
+.listings{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}.property{background:var(--panel);border:1px solid var(--line);border-radius:12px;overflow:hidden}.property .photo{height:175px;background:linear-gradient(135deg,#292216,#111);display:grid;place-items:center;color:var(--gold2);font-size:42px}.property .body{padding:16px}.tag{display:inline-block;color:var(--gold2);border:1px solid #765a2c;border-radius:30px;padding:2px 10px;font-size:12px}.property h3{margin:8px 0;font-size:18px}.details{color:var(--muted);font-size:13px}.price{color:var(--gold2);font-weight:bold;font-size:18px;margin:8px 0}.empty{grid-column:1/-1;text-align:center;padding:35px 15px;border:1px dashed #65502e;border-radius:12px;color:var(--muted)}
+.about{background:#11100d;border-block:1px solid #2d2417}.about-grid{display:grid;grid-template-columns:1.2fr .8fr;gap:30px;align-items:center}.about h2{font-size:28px;margin-top:0}.about p{color:#c8c0b2}.promise{padding:22px;border:1px solid var(--line);border-radius:12px;background:#17140f}.promise div{padding:9px 0;border-bottom:1px solid #302719}.promise div:last-child{border:0}
+.contact{text-align:center;background:radial-gradient(ellipse at center,#4c371b44,transparent 65%)}.contact h2{font-size:30px}.phone{font-size:24px;color:var(--gold2);direction:ltr;display:block;margin:12px}
+footer{border-top:1px solid #302719;padding:22px 0;color:#aaa18f;text-align:center;font-size:13px}
+.float{position:fixed;bottom:18px;left:18px;z-index:20;border-radius:50px;box-shadow:0 5px 25px #000}
+@media(max-width:800px){.links{display:none}.areas{grid-template-columns:repeat(2,1fr)}.filters{grid-template-columns:repeat(2,1fr)}.listings{grid-template-columns:repeat(2,1fr)}.about-grid{grid-template-columns:1fr}}
+@media(max-width:520px){.hero{padding:60px 0}.filters,.listings{grid-template-columns:1fr}.brand span{font-size:14px}.nav>.btn{font-size:12px;padding:9px 11px}.section-head h2{font-size:24px}}
+</style>
+</head>
+<body>
+<header><div class="wrap nav">
+<a class="brand" href="#"><img src="logo.jpg" alt="شعار القناوية"><span>القناوية للتسويق العقاري</span></a>
+<nav class="links"><a href="#home">الرئيسية</a><a href="#areas">مناطقنا</a><a href="#properties">العقارات</a><a href="#about">عن الشركة</a><a href="#contact">تواصل معنا</a></nav>
+<a class="btn" href="https://wa.me/201104185245" target="_blank" rel="noopener">تواصل واتساب</a>
+</div></header>
+<main>
+<section class="hero" id="home"><div class="wrap">
+<div class="kicker">ثقتكم أساس استثمارنا</div>
+<h1>اختار بيتك… <em>وخلّي علينا</em> رحلة البحث</h1>
+<p>القناوية للتسويق والاستثمار العقاري — بنساعدك تلاقي العقار المناسب للسكن أو الاستثمار في مناطق جنوب القاهرة.</p>
+<div class="hero-actions"><a class="btn" href="#properties">تصفح العقارات</a><a class="btn outline" href="tel:01104185245">اتصل بنا</a></div>
+</div></section>
+<section id="areas"><div class="wrap"><div class="section-head"><h2>المناطق اللي بنخدمها</h2><p>اختار المنطقة وابدأ رحلة البحث عن عقارك</p></div>
+<div class="areas">
+<a class="area" href="#properties" data-area="دار السلام"><b>دار السلام</b><small>عقارات للبيع والإيجار</small></a>
+<a class="area" href="#properties" data-area="البساتين"><b>البساتين</b><small>عقارات للبيع والإيجار</small></a>
+<a class="area" href="#properties" data-area="حدائق المعادي"><b>حدائق المعادي</b><small>عقارات للبيع والإيجار</small></a>
+<a class="area" href="#properties" data-area="المعادي"><b>المعادي</b><small>عقارات للبيع والإيجار</small></a>
+</div></div></section>
+<section id="properties"><div class="wrap"><div class="section-head"><h2>العقارات المتاحة</h2><p>فلتر النتائج حسب نوع العقار والمنطقة</p></div>
+<div class="filters">
+<select id="kind"><option value="">كل أنواع العقارات</option><option>تمليك</option><option>إيجار قديم</option><option>إيجار جديد</option></select>
+<select id="area"><option value="">كل المناطق</option><option>دار السلام</option><option>البساتين</option><option>حدائق المعادي</option><option>المعادي</option></select>
+<select id="rooms"><option value="">عدد الغرف</option><option value="1">غرفة</option><option value="2">غرفتين</option><option value="3">3 غرف</option><option value="4">4 غرف أو أكثر</option></select>
+<input id="search" placeholder="ابحث بكود العقار أو وصفه">
+</div>
+<div class="listings" id="listingGrid"><div class="empty">سيتم عرض العقارات المتاحة هنا قريبًا.<br>للاستفسار عن أحدث الوحدات، تواصل معنا على واتساب.</div></div>
+</div></section>
+<section class="about" id="about"><div class="wrap about-grid"><div><div class="kicker">القناوية للتسويق والاستثمار العقاري</div><h2>اختيارات عقارية أوضح… وقرار أضمن</h2><p>نساعدك في البحث عن وحدات سكنية وفرص عقارية في دار السلام والبساتين وحدائق المعادي والمعادي، مع توضيح التفاصيل الأساسية وتسهيل التواصل والمعاينة.</p></div>
+<div class="promise"><div>✦ وحدات سكنية للبيع</div><div>✦ إيجار قديم وإيجار جديد</div><div>✦ فرص مناسبة للسكن والاستثمار</div><div>✦ تواصل مباشر للاستفسار والمعاينة</div></div></div></section>
+<section class="contact" id="contact"><div class="wrap"><div class="kicker">إحنا هنا لمساعدتك</div><h2>بتدور على شقة؟ خلينا نساعدك</h2><p>اتواصل معانا واسأل عن أحدث العقارات المتاحة</p><a class="phone" href="tel:01104185245">01104185245</a><a class="btn" href="https://wa.me/201104185245" target="_blank" rel="noopener">ابدأ محادثة واتساب</a></div></section>
+</main>
+<footer><div class="wrap">© <span id="year"></span> القناوية للتسويق والاستثمار العقاري — جميع الحقوق محفوظة</div></footer>
+<a class="btn float" href="https://wa.me/201104185245" target="_blank" rel="noopener" aria-label="واتساب">واتساب</a>
+<script>
+document.getElementById('year').textContent=new Date().getFullYear();
+// أضيفي بيانات العقارات داخل القائمة التالية عند تجهيزها.
+const properties = [
+  // مثال للإضافة:
+  // {code:"Q001",kind:"تمليك",area:"دار السلام",rooms:3,title:"شقة 3 غرف وريسبشن",details:"الدور الخامس - أسانسير",price:"1,200,000 جنيه",image:""},
+];
+const grid=document.getElementById('listingGrid');
+function render(){
+ const kind=document.getElementById('kind').value, area=document.getElementById('area').value;
+ const rooms=document.getElementById('rooms').value, q=document.getElementById('search').value.trim().toLowerCase();
+ const found=properties.filter(p=>(!kind||p.kind===kind)&&(!area||p.area===area)&&(!rooms||(rooms==="4"?p.rooms>=4:String(p.rooms)===rooms))&&(!q||[p.code,p.title,p.area,p.details].join(" ").toLowerCase().includes(q)));
+ grid.innerHTML=found.length?found.map(p=>`<article class="property"><div class="photo">${p.image?`<img src="${p.image}" alt="" style="width:100%;height:100%;object-fit:cover">`:"⌂"}</div><div class="body"><span class="tag">${p.kind} · ${p.area}</span><h3>${p.title}</h3><div class="details">كود العقار: ${p.code} · ${p.rooms} غرف</div><div class="details">${p.details||""}</div><div class="price">${p.price||"السعر للاستفسار"}</div><a class="btn" href="https://wa.me/201104185245?text=${encodeURIComponent("استفسار عن العقار كود "+p.code)}" target="_blank" rel="noopener">استفسر عن العقار</a></div></article>`).join(""):'<div class="empty">مفيش عقارات مطابقة للبحث حاليًا. تواصل معنا لمعرفة الوحدات المتاحة.</div>';
+}
+['kind','area','rooms','search'].forEach(id=>document.getElementById(id).addEventListener(id==='search'?'input':'change',render));
+document.querySelectorAll('.area').forEach(a=>a.addEventListener('click',()=>{document.getElementById('area').value=a.dataset.area;render()}));
+</script>
+</body></html>
