@@ -71,9 +71,16 @@ footer{border-top:1px solid #302719;padding:22px 0;color:#aaa18f;text-align:cent
 document.getElementById('year').textContent=new Date().getFullYear();
 // أضيفي بيانات العقارات داخل القائمة التالية عند تجهيزها.
 const properties = [
-  // مثال للإضافة:
-  // {code:"Q001",kind:"تمليك",area:"دار السلام",rooms:3,title:"شقة 3 غرف وريسبشن",details:"الدور الخامس - أسانسير",price:"1,200,000 جنيه",image:""},
-];
+  { code:"201",
+    kind:"تمليك",
+    area:"دار السلام",
+    rooms:"3",
+    title:"شقة تمليك - جانبي سور الشركة - دار السلام",
+    price:"800,000",
+    floor:"الدور 12 - أسانسير شغال - مش الأخير",
+    details:"3 غرف وريسيبشن - كهرباء ممارسة - عداد مياه + موتور خاص - بدون غاز",
+    video:"dar-elsalam.mp4",
+    phone:"01104185245"}];
 const grid=document.getElementById('listingGrid');
 function render(){
  const kind=document.getElementById('kind').value, area=document.getElementById('area').value;
