@@ -70,17 +70,74 @@ footer{border-top:1px solid #302719;padding:22px 0;color:#aaa18f;text-align:cent
 <script>
 document.getElementById('year').textContent=new Date().getFullYear();
 // أضيفي بيانات العقارات داخل القائمة التالية عند تجهيزها.
-const properties = [
-  { code:"201",
-    kind:"تمليك",
-    area:"دار السلام",
-    rooms:"3",
-    title:"شقة تمليك - جانبي سور الشركة - دار السلام",
-    price:"800,000",
-    floor:"الدور 12 - أسانسير شغال - مش الأخير",
-    details:"3 غرف وريسيبشن - كهرباء ممارسة - عداد مياه + موتور خاص - بدون غاز",
-    video:"dar-elsalam.mp4",
-    phone:"01104185245"}];
+const SHEET_CSV_URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vRmZjnseG8F209I1DuBszQ9EkYyXWPjT9U-lEdOejpyhf29BTPic35iQBGGUnINCS6-Nefys003iK2x/pub?gid=2087716127&single=true&output=csv";
+
+let properties = [];
+const grid = document.getElementById('listingGrid');
+
+async function loadFromSheet(){
+  grid.innerHTML = '<div style="text-align:center;padding:40px">جاري تحميل الشقق...</div>';
+  const res = await fetch(SHEET_CSV_URL + '&_=' + Date.now());
+  const text = await res.text();
+  const lines = text.trim().split(/\r?\n/);
+  
+  properties = lines.slice(1).map(line=>{
+    const c = line.split(/,(?=(?:[^"]*"[^"]*")*[^"]*$)/).map(x=>x.replace(/^"|"$/g,'').trim());
+    return {
+      code: c[0] || '',
+      price: c[1] || '',
+      title: c[2] || '',
+      area: c[3] || '', // ده العمود بتاع المنطقة - هيجي من الشيت
+      floor: c[4] || '',
+      details: c[5] || '',
+      video: c[6] || '',
+      phone: c[7] || '01104185245',
+      kind: 'تمليك',
+      rooms: '3'
+    };
+  }).filter(p=>p.code);
+
+  // دي الحتة المهمة اللي هتخلي قايمة المناطق تتحدث لوحدها من الشيت
+  const areaSelect = document.getElementById('area');
+  if(areaSelect){
+    const areas = [...new Set(properties.map(p=>p.area).filter(Boolean))];
+    areaSelect.innerHTML = '<option value="">كل المناطق</option>' + areas.map(a=>`<option value="${a}">${a}</option>`).join('');
+  }
+  
+  render();
+}
+
+function render(){
+  const k = document.getElementById('kind')?.value||'';
+  const a = document.getElementById('area')?.value||'';
+  const r = document.getElementById('rooms')?.value||'';
+  const s = document.getElementById('search')?.value||'';
+  
+  const found = properties.filter(p=>
+    (!k||p.kind===k) &&
+    (!a||p.area===a) && // الفلترة حسب المنطقة اللي من الشيت
+    (!r||p.rooms===r) &&
+    (!s||p.code.includes(s))
+  );
+
+  if(!found.length){grid.innerHTML='<div style="text-align:center;padding:40px">لا يوجد نتائج</div>';return;}
+  
+  grid.innerHTML = found.map(p=>{
+    let msg=encodeURIComponent('السلام عليكم بستفسر علي شقه كود '+p.code);
+    let media = p.video.includes('drive.google.com') ? 
+      `<iframe src="https://drive.google.com/file/d/${p.video.match(/\/d\/([^\/]+)/)?.[1]||''}/preview" style="width:100%;height:280px;border:0;background:#000" allowfullscreen></iframe>` :
+      `<video src="${p.video}" controls style="width:100%;height:280px;background:#000"></video>`;
+    let det = p.details.split('-').map(t=>`<div style="display:flex;gap:8px;margin:7px 0"><span style="color:#c5a059">◆</span><span style="font-size:14px">${t.trim()}</span></div>`).join('');
+    return `<article style="background:#121212;border:1px solid #222;border-radius:16px;overflow:hidden">${media}<div style="padding:16px"><div style="text-align:left"><span style="border:1px solid #c5a059;color:#c5a059;padding:4px 10px;border-radius:20px;font-size:12px">كود ${p.code}</span></div><h2 style="color:#c5a059;text-align:center;margin:12px 0 4px 0">سعر الشقة: ${p.price}</h2><h3 style="text-align:center;margin:0;font-size:15px">${p.title}</h3><p style="text-align:center;opacity:.6;font-size:13px">${p.area} • ${p.floor}</p><div style="margin-top:14px">${det}</div><div style="margin-top:16px;border:1px solid #333;border-radius:14px;padding:12px;background:#1a1a1a"><div style="text-align:center;font-weight:bold;font-size:18px;margin-bottom:10px">${p.phone}</div><div style="display:flex;gap:10px"><a href="tel:${p.phone}" style="flex:1;text-align:center;padding:10px;border:1px solid #c5a059;color:#c5a059;border-radius:20px;text-decoration:none">اتصال</a><a href="https://wa.me/2${p.phone.substring(1)}?text=${msg}" target="_blank" style="flex:1;text-align:center;padding:10px;background:#25D366;color:#fff;border-radius:20px;text-decoration:none;font-weight:bold">واتساب</a></div></div></div></article>`;
+  }).join('');
+}
+
+['kind','area','rooms','search'].forEach(id=>{
+  const el=document.getElementById(id);
+  if(el) el.addEventListener('input',render);
+});
+
+loadFromSheet();
 const grid=document.getElementById('listingGrid');
 function render(){
 const k=document.getElementById('kind').value;
