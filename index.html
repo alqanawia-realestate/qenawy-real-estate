@@ -83,17 +83,35 @@ const properties = [
     phone:"01104185245"}];
 const grid=document.getElementById('listingGrid');
 function render(){
-const kind=document.getElementById('kind').value, area=document.getElementById('area').value, rooms=document.getElementById('rooms').value, search=document.getElementById('search').value;
-const found=properties.filter(p=>(!kind||p.kind===kind)&&(!area||p.area===area)&&(!rooms||p.rooms===rooms)&&(!search||p.code.includes(search)||p.title.includes(search)));
-grid.innerHTML=found.length?found.map(p=>{
-let media=p.video?`<video src="${p.video}" controls style="width:100%;height:220px;object-fit:cover;background:#000;display:block"></video>`:`<div style="height:220px;display:grid;place-items:center;font-size:40px;background:#222">🏠</div>`;
-let msg=encodeURIComponent(`السلام عليكم بسال علي شقه كود ${p.code}`);
-let link=`https://wa.me/201104185245?text=${msg}`;
-return `<article class="property"><div>${media}</div><div style="padding:12px"><span style="font-size:12px;opacity:.7">${p.kind} - ${p.area}</span><h3 style="margin:8px 0">${p.title}</h3><p style="font-size:13px">كود العقار: ${p.code}<br>السعر: ${p.price}<br>${p.details}</p><a href="${link}" target="_blank" style="display:inline-block;margin-top:8px;padding:10px 16px;background:#c5a059;color:#000;border-radius:10px;text-decoration:none;font-weight:bold">استفسر على واتساب - كود ${p.code}</a></div></article>`;
-}).join(''):`<div class="empty">لا يوجد نتائج</div>`;
+const k=document.getElementById('kind').value;
+const a=document.getElementById('area').value;
+const r=document.getElementById('rooms').value;
+const s=document.getElementById('search').value;
+const found=properties.filter(p=>(!k||p.kind===k)&&(!a||p.area===a)&&(!r||p.rooms===r)&&(!s||p.code.includes(s)));
+if(!found.length){grid.innerHTML='<div style="text-align:center;padding:40px;opacity:.6">لا يوجد نتائج</div>';return;}
+grid.innerHTML=found.map(p=>{
+let msg=encodeURIComponent('السلام عليكم بستفسر علي شقه كود '+p.code);
+let det=(p.details||'').split('-').map(t=>`<div style="display:flex;gap:8px;margin:7px 0"><span style="color:#c5a059">◆</span><span style="font-size:14px">${t.trim()}</span></div>`).join('');
+return `<article style="background:#121212;border:1px solid #222;border-radius:16px;overflow:hidden">
+<video src="${p.video}" controls style="width:100%;height:280px;background:#000"></video>
+<div style="padding:16px">
+<div style="text-align:left"><span style="border:1px solid #c5a059;color:#c5a059;padding:4px 10px;border-radius:20px;font-size:12px">كود الشقة ${p.code}</span></div>
+<h2 style="color:#c5a059;text-align:center;margin:12px 0 4px 0">سعر الشقة: ${p.price}</h2>
+<h3 style="text-align:center;margin:0;font-size:15px">${p.title||''}</h3>
+<p style="text-align:center;opacity:.6;font-size:13px">${p.area||''} ${p.floor?'• '+p.floor:''}</p>
+<div style="margin-top:14px">${det}</div>
+<div style="margin-top:16px;border:1px solid #333;border-radius:14px;padding:12px;background:#1a1a1a">
+<div style="text-align:center;font-weight:bold;font-size:18px;margin-bottom:10px">${p.phone}</div>
+<div style="display:flex;gap:10px"><a href="tel:${p.phone}" style="flex:1;text-align:center;padding:10px;border:1px solid #c5a059;color:#c5a059;border-radius:20px;text-decoration:none">اتصال</a><a href="https://wa.me/2${p.phone.substring(1)}?text=${msg}" target="_blank" style="flex:1;text-align:center;padding:10px;background:#25D366;color:#fff;border-radius:20px;text-decoration:none;font-weight:bold">واتساب</a></div>
+</div>
+</div>
+</article>`;
+}).join('');
 }
-['kind','area','rooms','search'].forEach(id=>document.getElementById(id).addEventListener('input',render));
-document.querySelectorAll('.area').forEach(a=>a.addEventListener('click',()=>{document.getElementById('area').value=a.dataset.area||'';render();}));
+['kind','area','rooms','search'].forEach(id=>{
+const el=document.getElementById(id);
+if(el) el.addEventListener('input',render);
+});
 render();
 </script>
 </body></html>
