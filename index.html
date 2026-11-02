@@ -42,7 +42,7 @@ footer{border-top:1px solid #302719;padding:22px 0;color:#aaa18f;text-align:cent
 <section class="hero" id="home"><div class="wrap">
 <div class="kicker">ثقتكم أساس استثمارنا</div>
 <h1>اختار بيتك… <em>وخلّي علينا</em> رحلة البحث</h1>
-<p>القناوية للتسويق والاستثمار العقاري — بنساعدك تلاقي العقار المناسب للسكن أو الاستثمار .</p>
+<p>القناوية للتسويق والاستثمار العقاري — بنساعدك تلاقي العقار المناسب للسكن أو الاستثمار    .</p>
 <div class="hero-actions"><a class="btn" href="#properties">تصفح العقارات</a><a class="btn outline" href="tel:01104185245">اتصل بنا 01104185245</a></div>
 </div></section>
 <section id="areas"><div class="wrap"><div class="section-head"><h2>المناطق اللي بنخدمها</h2><p>اختار المنطقة وابدأ رحلة البحث عن عقارك</p></div>
@@ -52,14 +52,14 @@ footer{border-top:1px solid #302719;padding:22px 0;color:#aaa18f;text-align:cent
 <div class="area" onclick="filterByArea('حدائق المعادي')"><b>حدائق المعادي</b><small>عقارات للبيع والإيجار</small></div>
 <div class="area" onclick="filterByArea('المعادي')"><b>المعادي</b><small>عقارات للبيع والإيجار</small></div>
 </div></div></section>
-<section id="properties"><div class="wrap"><div class="section-head"><h2>العقارات المتاحة</h2><p></p></div>
+<section id="properties"><div class="wrap"><div class="section-head"><h2>العقارات المتاحة</h2><p>كل البيانات من الشيت بتاعك - بتتحدث تلقائي</p></div>
 <div class="filters">
 <select id="kind"><option value="">كل أنواع التعامل</option><option>بيع</option><option>ايجار قديم</option><option>ايجار جديد</option></select>
 <select id="area"><option value="">كل المناطق</option><option>دار السلام</option><option>البساتين</option><option>حدائق المعادي</option><option>المعادي</option></select>
 <select id="rooms"><option value="">عدد الغرف</option><option value="1">غرفة</option><option value="2">غرفتين</option><option value="3">3 غرف</option><option value="4">4 غرف أو أكثر</option></select>
 <input id="search" placeholder="ابحث بكود العقار">
 </div>
-<div class="listings" id="listingGrid"><div class="empty">جاري تحميل العقارات ...</div></div>
+<div class="listings" id="listingGrid"><div class="empty">جاري تحميل العقارات  
 </div></section>
 <section class="about" id="about"><div class="wrap about-grid"><div><div class="kicker">القناوية للتسويق والاستثمار العقاري</div><h2>اختيارات عقارية أوضح… وقرار أضمن</h2><p>نساعدك في البحث عن وحدات سكنية وفرص عقارية في دار السلام والبساتين وحدائق المعادي والمعادي، مع توضيح التفاصيل الأساسية وتسهيل التواصل والمعاينة.</p></div>
 <div class="promise"><div>✦ وحدات سكنية للبيع</div><div>✦ إيجار قديم وإيجار جديد</div><div>✦ فرص مناسبة للسكن والاستثمار</div><div>✦ تواصل مباشر 01104185245</div></div></div></section>
@@ -100,8 +100,9 @@ function render(){
   let media='';
   if(p.video && p.video.includes('facebook.com')){
     media=`<div style="height:260px;background:#0f0f0f;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:14px"><div style="width:70px;height:70px;border-radius:50%;background:#222;display:grid;place-items:center;font-size:34px">🎬</div><div style="color:#f2d48e;font-weight:bold">فيديو كود ${p.code}</div><a href="${p.video}" target="_blank" style="background:linear-gradient(135deg,#f1d18a,#b98431);color:#111;padding:10px 22px;border-radius:25px;text-decoration:none;font-weight:bold">▶️ شاهد على فيسبوك</a></div>`;
-  } else if(p.video && p.video.includes('drive.google.com')){
-const m=p.video.match(/\/d\/([^\/]+)/); const id=m?m[1]:''; media=`<video src="https://drive.google.com/uc?export=download&id=${id}" controls playsinline style="height:260px;width:100%;background:#000;object-fit:contain"></video>`;
+  }else if(p.video && p.video.includes('drive.google.com')){
+    const m=p.video.match(/\/d\/([^\/]+)/);const id=m?m[1]:'';media=`<iframe src="https://drive.google.com/file/d/${id}/preview" style="width:100%;height:260px;border:0;background:#000" allowfullscreen></iframe>`;
+  }else if(p.video){media=`<video src="${p.video}" controls style="width:100%;height:260px;background:#000"></video>`;}
   else{media=`<div style="height:260px;background:linear-gradient(135deg,#292216,#111);display:grid;place-items:center;color:#f2d48e"><div style="text-align:center"><div style="font-size:44px">🏠</div><div>${p.title}</div></div></div>`;}
   const infoLine=[p.rooms? p.rooms+' غرف':'', p.reception? p.reception:'', p.floor? 'الدور '+p.floor:'', p.space? p.space+' م²':''].filter(Boolean).join(' • ');
   const extra=[p.lift?`الأسانسير: ${p.lift}`:'', p.elec?`الكهرباء: ${p.elec}`:'', p.water?`المياه: ${p.water}`:'', p.gas?`الغاز: ${p.gas}`:'', p.details||''].filter(Boolean).join(' - ');
